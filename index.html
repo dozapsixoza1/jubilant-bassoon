@@ -193,7 +193,7 @@ try{tg?.ready();tg?.expand();tg?.setHeaderColor?.('#08090c');tg?.setBackgroundCo
 const initData=tg?.initData||'';
 // If the Mini App is hosted separately from the bot API, set window.OTDEL_API_BASE
 // or pass ?api=https://your-bot-domain.example when opening the app.
-const API_BASE=(new URLSearchParams(location.search).get('api')||window.OTDEL_API_BASE||location.origin).replace(/\/$/,'');
+const API_BASE=(new URLSearchParams(location.search).get('api')||window.OTDEL_API_BASE||'https://bot-1790185762-6559-wave-dipsize.bothost.tech').replace(/\/$/,'');
 let state={user:null,chats:[],rental:null,shop:[]};
 let activeChat=null,pending=null;
 
