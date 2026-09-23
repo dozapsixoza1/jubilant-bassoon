@@ -89,7 +89,7 @@ svg{display:block}
 <body>
 <div class="wrap">
   <div class="top">
-    <button class="iconbtn" onclick="toast('Меню OTDEL')">
+    <button class="iconbtn" onclick="menuInfo()">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
     <div class="logo">OTDEL</div>
@@ -191,27 +191,44 @@ svg{display:block}
 const tg=window.Telegram?.WebApp;
 try{tg?.ready();tg?.expand();tg?.setHeaderColor?.('#08090c');tg?.setBackgroundColor?.('#08090c')}catch(e){}
 const initData=tg?.initData||'';
+// If the Mini App is hosted separately from the bot API, set window.OTDEL_API_BASE
+// or pass ?api=https://your-bot-domain.example when opening the app.
+const API_BASE=(new URLSearchParams(location.search).get('api')||window.OTDEL_API_BASE||location.origin).replace(/\/$/,'');
 let state={user:null,chats:[],rental:null,shop:[]};
 let activeChat=null,pending=null;
 
+function menuInfo(){toast('Telegram ID: '+(state.user?.id||'—')+' · API: '+API_BASE)}
 function toast(s){const x=document.getElementById('toast');x.textContent=s;x.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove('show'),2300)}
 function headers(){return {'Content-Type':'application/json','X-Telegram-Init-Data':initData}}
-async function api(url,options={}){const r=await fetch(url,{...options,headers:{...headers(),...(options.headers||{})}});let d={};try{d=await r.json()}catch{}if(!r.ok)throw new Error(d.message||d.error||await r.text());return d}
+async function api(url,options={}){
+  const path=url.startsWith('http')?url:(API_BASE+url);
+  const r=await fetch(path,{...options,headers:{...headers(),...(options.headers||{})}});
+  const raw=await r.text();
+  let d={};
+  try{d=raw?JSON.parse(raw):{}}catch{d={message:raw||('HTTP '+r.status)}}
+  if(!r.ok) throw new Error(d.message||d.error||('HTTP '+r.status));
+  return d;
+}
 async function boot(){
-  if(!initData){toast('Открой Mini App из Telegram');return}
+  if(!tg || !initData){
+    document.getElementById('role').textContent='открой в Telegram';
+    toast('Открой OTDEL кнопкой из бота в Telegram');
+    return;
+  }
+  document.getElementById('role').textContent='проверка…';
   try{
     const d=await api('/api/bootstrap');state=d;activeChat=d.chats[0]||null;render();
   }catch(e){
     document.getElementById('role').textContent='нет доступа';
-    document.getElementById('rental').textContent='АРЕНДА';
-    toast(e.message);
+    document.getElementById('rental').textContent='НУЖНА АРЕНДА';
+    toast(e.message||'Ошибка подключения');
     document.getElementById('eventsBody').classList.add('hidden');
     document.getElementById('modBody').classList.add('hidden');
   }
 }
 function render(){
   const u=state.user||{};const r=state.rental||{};
-  document.getElementById('role').textContent=u.is_master?'главный владелец':'владелец';
+  document.getElementById('role').textContent=u.is_master?'главный владелец':(u.is_developer?'разработчик':'владелец');
   document.getElementById('rental').textContent=u.is_master?'MASTER':(r.days_left+' дн.');
   document.getElementById('level').textContent='Lv. '+(u.is_master?'99':'12');
   const a=document.getElementById('avatar');if(u.photo_url){a.innerHTML='<img src="'+esc(u.photo_url)+'">'}else a.textContent=(u.first_name||'O')[0].toUpperCase();
