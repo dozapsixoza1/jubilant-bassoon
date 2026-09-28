@@ -6,222 +6,2098 @@
 <meta name="theme-color" content="#08090c">
 <title>OTDEL</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 <style>
-:root{--bg:#eef1ee;--card:#f7f8f6;--card2:#e9eeea;--line:#d6dcd8;--text:#15352d;--muted:#68746f;--accent:#0e6f5b;--accent2:#0a5a4b;--gold:#d5b24a;--red:#c95d5d;--shadow:0 7px 22px rgba(24,48,40,.08)}
-*{box-sizing:border-box;margin:0;padding:0}html{background:var(--bg);scroll-behavior:smooth}body{min-height:100vh;background:linear-gradient(180deg,#f4f6f4 0%,#e9eeeb 100%);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:calc(9px + env(safe-area-inset-top)) 0 calc(105px + env(safe-area-inset-bottom));}button,input{font:inherit}button{border:0;color:inherit}svg{display:block}.wrap{max-width:540px;margin:auto;padding:10px 15px}
-.top{height:55px;display:grid;grid-template-columns:45px 1fr auto;align-items:center;gap:9px;margin-bottom:8px}.iconbtn{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:#f4f6f4;color:var(--text);display:grid;place-items:center;box-shadow:var(--shadow)}.logo{font-size:26px;letter-spacing:1px;font-weight:950;text-align:center;color:var(--text)}.userbox{display:flex;align-items:center;gap:7px}.avatar{width:42px;height:42px;border-radius:50%;border:1px solid #cad2cd;overflow:hidden;background:#e0e6e2;display:grid;place-items:center;color:var(--accent);font-weight:900}.avatar img{width:100%;height:100%;object-fit:cover}.level{font-size:10px;color:var(--muted);font-weight:800;white-space:nowrap}.balance{display:flex;align-items:center;gap:5px;border:1px solid var(--line);background:#f7f9f7;border-radius:999px;padding:5px 6px 5px 9px;color:var(--text);font-weight:850;font-size:11px;box-shadow:var(--shadow)}.plus{width:22px;height:22px;border-radius:50%;background:#dbe2de;color:var(--text);display:grid;place-items:center;font-weight:900;font-size:18px}
-.status{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #d5dcd7;background:rgba(247,249,247,.94);border-radius:17px;padding:9px 11px;margin-bottom:12px;box-shadow:0 4px 15px rgba(26,48,41,.05)}.status-left{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);font-weight:700}.dot{width:8px;height:8px;border-radius:50%;background:#43a982}.status b{color:var(--text)}.rental{font-size:9px;color:var(--accent);white-space:nowrap;background:#dfe9e4;border-radius:999px;padding:7px 11px;font-weight:900}
-.hero{position:relative;min-height:270px;border-radius:25px;overflow:hidden;border:1px solid #cfd7d2;background:#dfe5e1;margin-bottom:20px;box-shadow:var(--shadow)}.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.78) contrast(.96) brightness(1.08)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(19,37,31,.35),transparent 55%)}.hero-content{position:absolute;left:20px;bottom:20px;z-index:2;padding:0}.hero-content .eyebrow,.hero-content h1,.hero-content p{display:none}.cta{background:#f6f8f6;color:var(--text);border-radius:13px;padding:12px 19px;font-weight:900;display:inline-flex;align-items:center;gap:9px;box-shadow:0 5px 16px rgba(15,35,28,.13)}
-.head{display:flex;align-items:center;justify-content:space-between;margin:0 3px 12px}.head h2{font-size:18px;letter-spacing:-.3px}.head span{font-size:11px;color:var(--muted);font-weight:800}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}.q{background:#f6f8f6;border:1px solid #d8dedb;border-radius:19px;padding:13px 8px;min-height:126px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow)}.qicon{width:49px;height:49px;border-radius:50%;border:1px solid #d0d8d3;background:#e6ebe8;display:grid;place-items:center;color:var(--text);margin-bottom:9px}.q b{font-size:11.5px}.q small{font-size:9.5px;color:var(--muted);margin-top:3px}
-.banner{width:100%;display:flex;align-items:center;gap:12px;border:1px solid #d8dedb;background:#f6f8f6;border-radius:18px;padding:15px;margin-bottom:20px;box-shadow:var(--shadow);text-align:left}.banner-icon{width:43px;height:43px;border-radius:50%;background:#e6ebe8;display:grid;place-items:center;color:var(--text)}.banner b{font-size:12px}.banner small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.arrow{margin-left:auto;color:var(--text);font-size:22px}
-.panel{display:none}.panel.active{display:block}.card{background:#f7f9f7;border:1px solid #d8dedb;border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}.card-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}.card-icon{width:40px;height:40px;border-radius:12px;background:#e5ebe7;border:1px solid #d0d8d3;color:var(--text);display:grid;place-items:center}.card h3{font-size:15px}.card p{font-size:10.5px;color:var(--muted);margin-top:3px}.item{border-top:1px solid #dfe4e1;padding:13px 2px}.item:first-of-type{border-top:0}.itemrow{display:flex;align-items:center;gap:10px;cursor:pointer}.itemrow>div:first-child{flex:1}.itemname{font-size:12.5px;font-weight:850}.note{font-size:10.5px;color:var(--muted);margin-top:3px}.chev{color:var(--text);transition:.25s}.item.open .chev{transform:rotate(90deg)}.itembody{max-height:0;overflow:hidden;transition:max-height .28s}.item.open .itembody{max-height:300px}.actions{padding-top:11px;display:flex;gap:7px;flex-wrap:wrap}.input{flex:1;min-width:145px;background:#fff;border:1px solid #d4dbd7;color:var(--text);border-radius:11px;padding:10px 11px;font-size:11.5px;outline:0}.select{flex:1;min-width:145px;background:#fff;border:1px solid #d4dbd7;color:var(--text);border-radius:11px;padding:10px 11px;font-size:11.5px;outline:0}.select:focus{border-color:var(--accent)}.input:focus{border-color:var(--accent)}.btn{padding:10px 13px;border-radius:11px;background:var(--accent);color:white;font-weight:900;font-size:11px}.btn.ghost{background:#e8ece9;border:1px solid #d2dad5;color:var(--text)}.btn.red{background:var(--red);color:#fff}
-.chats{display:grid;gap:10px}.chat{width:100%;display:flex;align-items:center;gap:11px;padding:13px;border:1px solid #d8dedb;border-radius:18px;background:#f7f9f7;box-shadow:var(--shadow)}.chat.active{border-color:#8cb9ac;background:#eaf2ee}.chatava{width:43px;height:43px;border-radius:13px;background:#dce7e1;color:var(--accent);display:grid;place-items:center;font-weight:950}.chat b{font-size:12.5px}.chat small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.badge{margin-left:auto;border:1px solid #b9cbc3;border-radius:999px;color:var(--accent);background:#edf3ef;padding:4px 8px;font-size:9px}.lock{padding:50px 20px;text-align:center;color:var(--muted);border:1px dashed #cbd4cf;border-radius:20px}.lock svg{margin:0 auto 10px;color:var(--accent)}.lock b{display:block;color:var(--text);margin-bottom:4px}
-.shop{display:grid;grid-template-columns:1fr 1fr;gap:10px}.product{border:1px solid #d8dedb;background:#f7f9f7;border-radius:18px;padding:13px;min-height:145px;display:flex;flex-direction:column;box-shadow:var(--shadow)}.prodicon{width:36px;height:36px;border:1px solid #d0d8d3;background:#e5ebe7;border-radius:11px;display:grid;place-items:center;color:var(--text);margin-bottom:10px}.product b{font-size:11.5px;line-height:1.3}.prodfoot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px}.price{font-size:11px;color:var(--accent);font-weight:900}.buy{background:var(--accent);color:#fff;border-radius:9px;padding:7px 10px;font-weight:900;font-size:9.5px}
-.nav{position:fixed;z-index:20;left:0;right:0;bottom:0;padding:0 12px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center}.navin{max-width:540px;width:100%;display:flex;justify-content:space-between;background:rgba(243,246,244,.97);backdrop-filter:blur(16px);border:1px solid #d1d9d4;border-radius:24px;padding:7px 7px;box-shadow:0 -7px 25px rgba(28,50,42,.09)}.navbtn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:#78837e;font-size:8.5px;font-weight:800;padding:3px;border-radius:13px}.navbtn.active{color:var(--text)}.navico{width:32px;height:30px;border-radius:10px;display:grid;place-items:center;font-size:19px}.navbtn.active .navico{background:#e1e8e4;color:var(--text)}
-.sheetbg{position:fixed;z-index:40;inset:0;background:rgba(20,30,27,.42);opacity:0;pointer-events:none;transition:.25s}.sheetbg.show{opacity:1;pointer-events:auto}.sheet{position:fixed;z-index:41;left:0;right:0;bottom:0;max-width:540px;margin:auto;background:#f7f9f7;border:1px solid #cbd4cf;border-bottom:0;border-radius:24px 24px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom));transform:translateY(105%);transition:.3s;box-shadow:0 -10px 35px rgba(23,44,37,.15)}.sheet.show{transform:translateY(0)}.sheet h3{font-size:17px}.sheet p{color:var(--muted);font-size:11px;margin:7px 0 16px}.sheetrow{display:flex;gap:8px}.sheetrow button{flex:1}.toast{position:fixed;z-index:60;left:50%;bottom:115px;transform:translate(-50%,15px);background:#173b31;color:white;border:1px solid #80aa9b;border-radius:999px;padding:10px 15px;font-size:11px;opacity:0;pointer-events:none;transition:.25s;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis}.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}
-@media(max-width:380px){.hero{min-height:245px}.quick{gap:7px}.q{padding:10px 6px}.shop{grid-template-columns:1fr}.logo{font-size:24px}}
+:root{
+  --bg:#eef1ee;
+  --card:#f7f8f6;
+  --card2:#e9eeea;
+  --line:#d6dcd8;
+  --text:#15352d;
+  --muted:#68746f;
+  --accent:#0e6f5b;
+  --accent2:#0a5a4b;
+  --gold:#d5b24a;
+  --red:#c95d5d;
+  --shadow:0 7px 22px rgba(24,48,40,.08)
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text)
+}
+
+body{
+  overflow-x:hidden
+}
+
+button,input{
+  font:inherit
+}
+
+button{
+  border:0;
+  cursor:pointer
+}
+
+.app{
+  width:100%;
+  max-width:560px;
+  margin:auto;
+  min-height:100vh;
+  padding:14px 14px 92px
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-weight:900;
+  font-size:18px;
+  background:linear-gradient(145deg,#116f5c,#063e34);
+  box-shadow:var(--shadow)
+}
+
+.brand-title{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.4px
+}
+
+.brand-sub{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:2px
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#dce3df;
+  border:2px solid rgba(14,111,91,.18)
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:205px;
+  padding:22px;
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(34,142,116,.22),transparent 32%),
+    linear-gradient(145deg,#153d34,#0b5f4d);
+  color:#fff;
+  box-shadow:var(--shadow);
+  margin-bottom:14px
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  left:-20%;
+  right:-20%;
+  bottom:-100px;
+  height:180px;
+  background:rgba(54,179,143,.14);
+  border-radius:50%
+}
+
+.hero-content{
+  position:relative;
+  z-index:2
+}
+
+.hero-small{
+  opacity:.72;
+  font-size:12px;
+  margin-bottom:7px
+}
+
+.hero-title{
+  font-size:31px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-1px
+}
+
+.hero-text{
+  max-width:310px;
+  margin-top:12px;
+  color:rgba(255,255,255,.72);
+  line-height:1.4;
+  font-size:13px
+}
+
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:18px
+}
+
+.hero-btn{
+  min-height:39px;
+  padding:0 14px;
+  border-radius:12px;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.12);
+  font-weight:800
+}
+
+.hero-btn.primary{
+  background:#39a887;
+  color:#06291f
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:19px 2px 9px
+}
+
+.section-title b{
+  font-size:15px
+}
+
+.section-title span{
+  font-size:11px;
+  color:var(--muted)
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:19px;
+  padding:14px;
+  margin-bottom:10px;
+  box-shadow:var(--shadow)
+}
+
+.profile{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+
+.profile-avatar{
+  width:55px;
+  height:55px;
+  border-radius:17px;
+  object-fit:cover;
+  background:#dce3df
+}
+
+.profile-name{
+  font-size:16px;
+  font-weight:900
+}
+
+.profile-username{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px
+}
+
+.balance{
+  margin-left:auto;
+  text-align:right
+}
+
+.balance b{
+  display:block;
+  font-size:17px
+}
+
+.balance span{
+  color:var(--muted);
+  font-size:10px
+}
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px
+}
+
+.menu-item{
+  min-height:83px;
+  border-radius:17px;
+  padding:14px;
+  text-align:left;
+  background:var(--card);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow)
+}
+
+.menu-icon{
+  font-size:22px;
+  margin-bottom:7px
+}
+
+.menu-name{
+  font-size:13px;
+  font-weight:900
+}
+
+.menu-desc{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:10px
+}
+
+.green{
+  color:var(--accent)
+}
+
+.row{
+  display:flex;
+  align-items:center;
+  gap:11px
+}
+
+.row-icon{
+  width:43px;
+  height:43px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--card2);
+  font-size:21px;
+  flex:none
+}
+
+.row-main{
+  min-width:0;
+  flex:1
+}
+
+.row-title{
+  font-size:13px;
+  font-weight:900
+}
+
+.row-sub{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px
+}
+
+.arrow{
+  color:var(--muted);
+  font-size:20px
+}
+
+.btn{
+  width:100%;
+  min-height:44px;
+  margin-top:10px;
+  border-radius:13px;
+  background:var(--accent);
+  color:#fff;
+  font-weight:900;
+  box-shadow:0 6px 14px rgba(14,111,91,.17)
+}
+
+.btn.secondary{
+  background:var(--card2);
+  color:var(--text);
+  box-shadow:none
+}
+
+.btn.gold{
+  background:#d5b24a;
+  color:#263019
+}
+
+.btn.danger{
+  background:#c95d5d;
+  color:#fff
+}
+
+.btn:active,
+.menu-item:active,
+.hero-btn:active{
+  transform:scale(.98)
+}
+
+.input{
+  width:100%;
+  min-height:43px;
+  border:1px solid var(--line);
+  outline:none;
+  background:#fff;
+  color:var(--text);
+  border-radius:12px;
+  padding:0 12px;
+  margin-top:9px
+}
+
+.input:focus{
+  border-color:var(--accent)
+}
+
+.tabs{
+  position:fixed;
+  left:50%;
+  bottom:10px;
+  transform:translateX(-50%);
+  width:min(532px,calc(100% - 20px));
+  z-index:20;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:4px;
+  padding:6px;
+  border-radius:19px;
+  background:rgba(247,248,246,.94);
+  backdrop-filter:blur(16px);
+  border:1px solid var(--line);
+  box-shadow:0 10px 35px rgba(25,45,39,.15)
+}
+
+.tab{
+  min-height:53px;
+  border-radius:14px;
+  background:transparent;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:800
+}
+
+.tab-icon{
+  display:block;
+  font-size:18px;
+  margin-bottom:3px
+}
+
+.tab.active{
+  background:#dfeae5;
+  color:var(--accent)
+}
+
+.page{
+  display:none
+}
+
+.page.active{
+  display:block
+}
+
+.page-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:6px 0 15px
+}
+
+.back{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:var(--card);
+  border:1px solid var(--line);
+  color:var(--text);
+  font-size:19px
+}
+
+.page-title{
+  font-size:22px;
+  font-weight:950
+}
+
+.page-sub{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:2px
+}
+
+.chat-card{
+  overflow:hidden;
+  padding:0
+}
+
+.chat-cover{
+  width:100%;
+  height:145px;
+  object-fit:cover;
+  background:#dce3df
+}
+
+.chat-body{
+  padding:14px
+}
+
+.chat-name{
+  font-size:16px;
+  font-weight:950
+}
+
+.chat-user{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px
+}
+
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:9px
+}
+
+.badge{
+  padding:5px 8px;
+  border-radius:8px;
+  background:var(--card2);
+  color:var(--accent);
+  font-size:9px;
+  font-weight:900
+}
+
+.event{
+  display:flex;
+  gap:11px;
+  align-items:flex-start
+}
+
+.event-icon{
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  background:#dfeae5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  flex:none
+}
+
+.event-info{
+  flex:1;
+  min-width:0
+}
+
+.event-name{
+  font-weight:950;
+  font-size:13px
+}
+
+.event-desc{
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.4;
+  margin-top:3px
+}
+
+.event-actions{
+  margin-top:10px
+}
+
+.shop-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px
+}
+
+.shop-category{
+  min-height:115px;
+  text-align:left;
+  border-radius:18px;
+  padding:15px;
+  background:var(--card);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow)
+}
+
+.shop-category-icon{
+  font-size:27px
+}
+
+.shop-category-title{
+  font-weight:950;
+  margin-top:8px;
+  font-size:13px
+}
+
+.shop-category-sub{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px
+}
+
+.product{
+  position:relative
+}
+
+.price{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  margin-top:8px;
+  padding:5px 8px;
+  border-radius:8px;
+  background:#e8eee9;
+  color:var(--accent);
+  font-size:10px;
+  font-weight:950
+}
+
+.locked{
+  opacity:.65
+}
+
+.admin-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px
+}
+
+.admin{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border-radius:13px;
+  background:var(--card2)
+}
+
+.admin-avatar{
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  object-fit:cover;
+  background:#d3ddd8
+}
+
+.admin-name{
+  flex:1;
+  min-width:0;
+  font-size:12px;
+  font-weight:900
+}
+
+.admin-role{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:2px
+}
+
+.modal-wrap{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  background:rgba(0,0,0,.38);
+  padding:10px
+}
+
+.modal-wrap.show{
+  display:flex
+}
+
+.modal{
+  width:min(560px,100%);
+  max-height:85vh;
+  overflow:auto;
+  border-radius:25px;
+  padding:17px;
+  background:#f7f8f6;
+  box-shadow:0 -5px 40px rgba(0,0,0,.2)
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+
+.modal-title{
+  font-size:18px;
+  font-weight:950
+}
+
+.close{
+  width:35px;
+  height:35px;
+  border-radius:11px;
+  background:#e6ebe7;
+  color:var(--text);
+  font-size:18px
+}
+
+.notice{
+  padding:11px;
+  border-radius:12px;
+  background:#e5eee9;
+  color:#315d50;
+  font-size:11px;
+  line-height:1.4;
+  margin-top:11px
+}
+
+.empty{
+  padding:25px 15px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:80px;
+  transform:translate(-50%,15px);
+  opacity:0;
+  pointer-events:none;
+  z-index:100;
+  max-width:calc(100% - 35px);
+  padding:11px 15px;
+  border-radius:12px;
+  background:#15352d;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  transition:.2s
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0)
+}
+
+.only-owner{
+  display:none
+}
+
+body.owner .only-owner{
+  display:block
+}
+
+@media(max-width:370px){
+  .app{
+    padding-left:10px;
+    padding-right:10px
+  }
+
+  .hero-title{
+    font-size:27px
+  }
+
+  .menu-grid,
+  .shop-grid{
+    gap:7px
+  }
+}
 </style>
 </head>
+
 <body>
-<div class="wrap">
-  <div class="top">
-    <button class="iconbtn" onclick="menuInfo()">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
-    <div class="logo">OTDEL</div>
-    <div class="userbox">
-      <div class="avatar" id="avatar">O</div>
-      <div class="level" id="level">Lv. 1</div>
-      <div class="balance">⭐ <span id="stars">—</span><span class="plus">+</span></div>
+<div class="app">
+
+  <!-- HOME -->
+  <section class="page active" id="page-home">
+
+    <div class="top">
+      <div class="brand">
+        <div class="logo">O</div>
+        <div>
+          <div class="brand-title">OTDEL</div>
+          <div class="brand-sub">управление чатами</div>
+        </div>
+      </div>
+
+      <img
+        class="avatar"
+        id="topAvatar"
+        src=""
+        alt=""
+      >
     </div>
-  </div>
 
-  <div class="status">
-    <div class="status-left"><span class="dot"></span><span>режим: <b id="role">проверка…</b></span></div>
-    <div class="rental" id="rental">—</div>
-  </div>
-
-  <section id="lobby" class="panel active">
     <div class="hero">
-      <img class="hero-img" src="/welcome.png" alt="Welcome OTDEL">
       <div class="hero-content">
-        <div class="eyebrow">WELCOME TO</div>
-        <h1>OTDEL</h1>
-        <p>Управляй Telegram-чатами, запускай ивенты, модерируй участников и используй магазин.</p>
-        <button class="cta" onclick="tab('events')">PLAY NOW <span>→</span></button>
+        <div class="hero-small">TELEGRAM COMMUNITY</div>
+        <div class="hero-title">OTDEL</div>
+        <div class="hero-text">
+          Управляй чатами, участвуй в ивентах,
+          покупай доступы и подключай дополнительные возможности.
+        </div>
+
+        <div class="hero-buttons">
+          <button class="hero-btn primary" onclick="openShop()">
+            🛒 SHOP
+          </button>
+
+          <button class="hero-btn" onclick="openExternal('https://www.tiktok.com/')">
+            TikTok
+          </button>
+
+          <button class="hero-btn" onclick="openExternal('https://discord.com/')">
+            Discord
+          </button>
+
+          <button class="hero-btn" onclick="openExternal('https://t.me/otdelik')">
+            Telegram
+          </button>
+
+          <button class="hero-btn" onclick="goPage('chats')">
+            💬 Chat
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="head"><h2>Quick Access</h2><span>See all →</span></div>
-    <div class="quick">
-      <button class="q" onclick="tab('events')"><div class="qicon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg></div><b>Events</b><small>ивенты</small></button>
-      <button class="q" onclick="tab('mod')"><div class="qicon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div><b>Moderation</b><small>чат</small></button>
-      <button class="q" onclick="tab('shop')"><div class="qicon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></div><b>Shop</b><small>покупки</small></button>
-    </div>
-
-    <button class="banner" onclick="tab('chats')">
-      <div class="banner-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.1 4.2L19 8l-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8L5 8l4.9-.8L12 3z"/></svg></div>
-      <div><b>Активный чат: <span id="activeName">—</span></b><small>Сменить подключённый чат</small></div>
-      <div class="arrow">›</div>
-    </button>
-  </section>
-
-  <section id="chats" class="panel">
-    <div class="head"><h2>Ваши чаты</h2><span id="chatCount">0</span></div>
-    <div class="chats" id="chatList"></div>
-    <div class="card" style="text-align:center;color:var(--muted);font-size:11px">Добавь бота администратором в группу — чат появится здесь автоматически.</div>
-  </section>
-
-  <section id="events" class="panel">
-    <div id="eventsLock" class="lock hidden">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
-      <b>Раздел владельца</b><span>Только владелец подключённого чата может управлять им.</span>
-    </div>
-    <div id="eventsBody" class="card">
-      <div class="card-head"><div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div><div><h3>Events</h3><p>Запуск событий в активном чате</p></div></div>
-      <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">777</div><div class="note">Telegram slot event</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><select class="select prize-type" onchange="syncPrize(this)"><option value="stars">⭐ Stars</option><option value="nft">🎁 NFT</option></select><input class="input prize-value" type="number" min="1" placeholder="Выигрыш в Stars"><button class="btn" onclick="act('event_777',this)">Запустить</button></div></div></div>
-      <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">Перебив</div><div class="note">Активность чата на 3 минуты</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><select class="select prize-type" onchange="syncPrize(this)"><option value="stars">⭐ Stars</option><option value="nft">🎁 NFT</option></select><input class="input prize-value" type="number" min="1" placeholder="Выигрыш в Stars"><button class="btn" onclick="act('event_spam3',this)">Запустить</button></div></div></div>
-      <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">Угадай число</div><div class="note">Ты сам задаёшь любое целое число</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><select class="select prize-type" onchange="syncPrize(this)"><option value="stars">⭐ Stars</option><option value="nft">🎁 NFT</option></select><input class="input prize-value" type="number" min="1" placeholder="Выигрыш в Stars"><input class="input secret-number" type="text" inputmode="numeric" placeholder="Загаданное число (любое)"><button class="btn" onclick="act('event_guess',this)">Запустить</button></div></div></div>
-    </div>
-  </section>
-
-  <section id="mod" class="panel">
-    <div id="modLock" class="lock hidden">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
-      <b>Раздел владельца</b><span>Выбери свой чат во вкладке Chats.</span>
-    </div>
-    <div id="modBody" class="card">
-      <div class="card-head"><div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z"/><path d="M8 12h8"/></svg></div><div><h3>Модерация</h3><p>Действия выполняются ботом в Telegram</p></div></div>
-      <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">Мут / Размут</div><div class="note">ID или @username · причина и срок</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><input class="input target" placeholder="ID или @username"><input class="input reason" placeholder="Причина мута"><select class="select duration"><option value="10m">10 минут</option><option value="30m">30 минут</option><option value="1h">1 час</option><option value="3h">3 часа</option><option value="1d">1 день</option><option value="7d">7 дней</option><option value="perm">Навсегда</option></select><button class="btn" onclick="act('mute',this)">Мут</button><button class="btn ghost" onclick="act('unmute',this)">Размут</button></div></div></div>
-      <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">Бан / Разбан</div><div class="note">Удаление участника · причина и срок</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><input class="input target" placeholder="ID или @username"><input class="input reason" placeholder="Причина бана"><select class="select duration"><option value="10m">10 минут</option><option value="30m">30 минут</option><option value="1h">1 час</option><option value="3h">3 часа</option><option value="1d">1 день</option><option value="7d">7 дней</option><option value="perm">Навсегда</option></select><button class="btn red" onclick="act('ban',this)">Бан</button><button class="btn ghost" onclick="act('unban',this)">Разбан</button></div></div></div>
-      <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">Варн / Снять</div><div class="note">Счётчик предупреждений · причина</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><input class="input target" placeholder="ID или @username"><input class="input reason" placeholder="Причина варна"><button class="btn" onclick="act('warn',this)">Варн</button><button class="btn ghost" onclick="act('unwarn',this)">Снять</button></div></div></div>
-      <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">Заморозить чат</div><div class="note">Запретить отправку сообщений</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><button class="btn red" onclick="act('freeze')">Заморозить</button><button class="btn ghost" onclick="act('unfreeze')">Разморозить</button></div></div></div>
-    </div>
-  </section>
-
-  <section id="shop" class="panel">
     <div class="card">
-      <div class="card-head"><div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></div><div><h3>OTDEL Shop</h3><p>Покупки оплачиваются Telegram Stars</p></div></div>
+      <div class="profile">
+        <img class="profile-avatar" id="profileAvatar" src="" alt="">
+
+        <div>
+          <div class="profile-name" id="profileName">Пользователь</div>
+          <div class="profile-username" id="profileUsername">@username</div>
+        </div>
+
+        <div class="balance">
+          <b id="starsBalance">0 ⭐</b>
+          <span>баланс</span>
+        </div>
+      </div>
+
+      <button class="btn" onclick="openTopup()">
+        ⭐ Пополнить баланс
+      </button>
     </div>
-    <div class="shop" id="shopGrid"></div>
+
+    <div class="section-title">
+      <b>Быстрый доступ</b>
+      <span>OTDEL</span>
+    </div>
+
+    <div class="menu-grid">
+
+      <button class="menu-item" onclick="goPage('chats')">
+        <div class="menu-icon">💬</div>
+        <div class="menu-name">Мои чаты</div>
+        <div class="menu-desc">Подключённые сообщества</div>
+      </button>
+
+      <button class="menu-item" onclick="goPage('events')">
+        <div class="menu-icon">🎰</div>
+        <div class="menu-name">Ивенты</div>
+        <div class="menu-desc">Активности и розыгрыши</div>
+      </button>
+
+      <button class="menu-item" onclick="goPage('moderation')">
+        <div class="menu-icon">🛡️</div>
+        <div class="menu-name">Модерация</div>
+        <div class="menu-desc">Управление чатами</div>
+      </button>
+
+      <button class="menu-item" onclick="openShop()">
+        <div class="menu-icon">🛍️</div>
+        <div class="menu-name">Магазин</div>
+        <div class="menu-desc">Доступы и товары</div>
+      </button>
+
+    </div>
+
+    <div class="section-title">
+      <b>Активный чат</b>
+      <span id="modeText">режим — обычный</span>
+    </div>
+
+    <div class="card" onclick="goPage('chats')">
+      <div class="row">
+        <div class="row-icon">💬</div>
+
+        <div class="row-main">
+          <div class="row-title">OTDEL</div>
+          <div class="row-sub">@otdelik · активный чат</div>
+        </div>
+
+        <div class="arrow">›</div>
+      </div>
+    </div>
+
   </section>
+
+  <!-- CHATS -->
+  <section class="page" id="page-chats">
+
+    <div class="page-head">
+      <button class="back" onclick="goPage('home')">‹</button>
+      <div>
+        <div class="page-title">Чаты</div>
+        <div class="page-sub">Ваши подключённые сообщества</div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <b>Активные чаты</b>
+      <span>режим — управление</span>
+    </div>
+
+    <div class="card chat-card">
+
+      <img
+        class="chat-cover"
+        src="https://placehold.co/900x400/e0e8e3/15352d?text=OTDEL"
+        alt="OTDEL"
+      >
+
+      <div class="chat-body">
+
+        <div class="chat-name">OTDEL</div>
+        <div class="chat-user">@otdelik</div>
+
+        <div class="badges">
+          <span class="badge">АКТИВЕН</span>
+          <span class="badge">ИВЕНТЫ</span>
+          <span class="badge">МОДЕРАЦИЯ</span>
+        </div>
+
+        <button
+          class="btn"
+          onclick="openExternal('https://t.me/otdelik')"
+        >
+          💬 Открыть чат
+        </button>
+
+        <button class="btn secondary" onclick="openRental()">
+          🏠 Нужна аренда
+        </button>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="row-icon">📌</div>
+
+        <div class="row-main">
+          <div class="row-title">Закреплённый чат</div>
+          <div class="row-sub">@otdelik</div>
+        </div>
+
+        <div class="badge">MAIN</div>
+      </div>
+    </div>
+
+    <div class="only-owner">
+      <div class="section-title">
+        <b>Добавление чатов</b>
+        <span>OWNER</span>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="row-icon">➕</div>
+
+          <div class="row-main">
+            <div class="row-title">Добавить чат</div>
+            <div class="row-sub">
+              Добавить своё сообщество в Mini App
+            </div>
+          </div>
+        </div>
+
+        <button class="btn" onclick="openAddChat()">
+          Добавить
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- EVENTS -->
+  <section class="page" id="page-events">
+
+    <div class="page-head">
+      <button class="back" onclick="goPage('home')">‹</button>
+      <div>
+        <div class="page-title">Ивенты</div>
+        <div class="page-sub">Активности чата</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="row-icon">🎯</div>
+
+        <div class="row-main">
+          <div class="row-title">Ивенты чата OTDEL</div>
+          <div class="row-sub">
+            Участвуй в активностях и получай награды
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <b>Доступные ивенты</b>
+      <span>режим — события</span>
+    </div>
+
+    <div class="card event">
+      <div class="event-icon">🎰</div>
+
+      <div class="event-info">
+        <div class="event-name">777</div>
+
+        <div class="event-desc">
+          Участники самостоятельно бросают настоящий
+          Telegram 🎰. Победитель определяется по результату 777.
+        </div>
+
+        <div class="event-actions">
+          <button class="btn" onclick="openExternal('https://t.me/otdelik')">
+            Перейти в чат
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card event">
+      <div class="event-icon">🔢</div>
+
+      <div class="event-info">
+        <div class="event-name">Угадай число</div>
+
+        <div class="event-desc">
+          Владелец задаёт любое целое число.
+          Участники отправляют свои варианты в чат.
+        </div>
+
+        <div class="event-actions">
+          <button class="btn" onclick="openExternal('https://t.me/otdelik')">
+            Участвовать
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="row-icon">🔐</div>
+
+        <div class="row-main">
+          <div class="row-title">Получить доступ</div>
+          <div class="row-sub">
+            Арендуй доступ к системе OTDEL
+          </div>
+        </div>
+      </div>
+
+      <button class="btn gold" onclick="openRental()">
+        ⭐ Получить доступ
+      </button>
+    </div>
+
+  </section>
+
+  <!-- MODERATION -->
+  <section class="page" id="page-moderation">
+
+    <div class="page-head">
+      <button class="back" onclick="goPage('home')">‹</button>
+
+      <div>
+        <div class="page-title">Модерация</div>
+        <div class="page-sub">Управление чатом</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="row-icon">🛡️</div>
+
+        <div class="row-main">
+          <div class="row-title">OTDEL</div>
+          <div class="row-sub">
+            режим — модерация
+          </div>
+        </div>
+
+        <span class="badge">ONLINE</span>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <b>Возможности</b>
+      <span>доступно владельцу</span>
+    </div>
+
+    <div class="card">
+
+      <div class="row">
+        <div class="row-icon">👮</div>
+
+        <div class="row-main">
+          <div class="row-title">Стать модератором чата</div>
+          <div class="row-sub">
+            Подать заявку на роль модератора
+          </div>
+        </div>
+      </div>
+
+      <button class="btn" onclick="openModerator()">
+        ⭐ Стать модератором
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <div class="row">
+        <div class="row-icon">🏷️</div>
+
+        <div class="row-main">
+          <div class="row-title">Купить префикс</div>
+          <div class="row-sub">
+            Уникальный префикс для профиля
+          </div>
+        </div>
+      </div>
+
+      <button class="btn" onclick="openPrefix()">
+        ⭐ Купить префикс
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <div class="row">
+        <div class="row-icon">👤</div>
+
+        <div class="row-main">
+          <div class="row-title">Администраторы</div>
+          <div class="row-sub">
+            Управление администраторами чата
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-list" style="margin-top:12px">
+
+        <div class="admin">
+          <div class="admin-avatar">👑</div>
+
+          <div class="admin-name">
+            Владелец
+            <div class="admin-role">OWNER</div>
+          </div>
+
+          <span class="badge">OWNER</span>
+        </div>
+
+      </div>
+
+      <button class="btn secondary" onclick="openAddAdmin()">
+        ➕ Добавить администратора
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- SHOP -->
+  <section class="page" id="page-shop">
+
+    <div class="page-head">
+      <button class="back" onclick="goPage('home')">‹</button>
+
+      <div>
+        <div class="page-title">Shop</div>
+        <div class="page-sub">Покупки за Telegram Stars</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="profile">
+        <div class="row-icon">⭐</div>
+
+        <div class="row-main">
+          <div class="row-title">Баланс</div>
+          <div class="row-sub">
+            Используй Stars для покупок
+          </div>
+        </div>
+
+        <div class="balance">
+          <b id="shopBalance">0 ⭐</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <b>Категории</b>
+      <span>SHOP</span>
+    </div>
+
+    <div class="shop-grid">
+
+      <button class="shop-category" onclick="openShopCategory('chat')">
+        <div class="shop-category-icon">💬</div>
+        <div class="shop-category-title">CHAT</div>
+        <div class="shop-category-sub">
+          Аренда и возможности
+        </div>
+      </button>
+
+      <button class="shop-category" onclick="openShopCategory('products')">
+        <div class="shop-category-icon">🛍️</div>
+        <div class="shop-category-title">ТОВАРЫ</div>
+        <div class="shop-category-sub">
+          Товары для чатов
+        </div>
+      </button>
+
+      <button class="shop-category" onclick="openShopCategory('prefix')">
+        <div class="shop-category-icon">🏷️</div>
+        <div class="shop-category-title">ПРЕФИКСЫ</div>
+        <div class="shop-category-sub">
+          Уникальный стиль
+        </div>
+      </button>
+
+      <button class="shop-category" onclick="openShopCategory('moderation')">
+        <div class="shop-category-icon">🛡️</div>
+        <div class="shop-category-title">МОДЕРАЦИЯ</div>
+        <div class="shop-category-sub">
+          Роли и доступы
+        </div>
+      </button>
+
+    </div>
+
+    <div id="shopContent" style="margin-top:12px">
+
+      <div class="section-title">
+        <b>Популярное</b>
+        <span>⭐ Stars</span>
+      </div>
+
+      <div class="card product">
+
+        <div class="row">
+
+          <div class="row-icon">🏠</div>
+
+          <div class="row-main">
+            <div class="row-title">
+              Аренда OTDEL
+            </div>
+
+            <div class="row-sub">
+              Доступ к системе управления
+            </div>
+
+            <div class="price">
+              ⭐ 100
+            </div>
+          </div>
+
+        </div>
+
+        <button class="btn" onclick="buyProduct('rental',100)">
+          Купить
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="only-owner">
+
+      <div class="section-title">
+        <b>Управление магазином</b>
+        <span>OWNER</span>
+      </div>
+
+      <div class="card">
+
+        <div class="row">
+
+          <div class="row-icon">➕</div>
+
+          <div class="row-main">
+            <div class="row-title">
+              Добавить категорию
+            </div>
+
+            <div class="row-sub">
+              Создать новую категорию магазина
+            </div>
+          </div>
+
+        </div>
+
+        <button class="btn" onclick="openAddCategory()">
+          Добавить категорию
+        </button>
+
+      </div>
+
+      <div class="card">
+
+        <div class="row">
+
+          <div class="row-icon">📌</div>
+
+          <div class="row-main">
+            <div class="row-title">
+              Закрепить сообщение
+            </div>
+
+            <div class="row-sub">
+              Товар для закрепления на определённое время
+            </div>
+
+          </div>
+
+        </div>
+
+        <button class="btn secondary" onclick="openPinProduct()">
+          Настроить
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
 </div>
 
-<div class="nav"><div class="navin">
-  <button class="navbtn active" data-tab="lobby" onclick="tab('lobby')"><div class="navico">⌂</div>Главная</button>
-  <button class="navbtn" data-tab="chats" onclick="tab('chats')"><div class="navico">▣</div>Чат</button>
-  <button class="navbtn" data-tab="events" onclick="tab('events')"><div class="navico">✦</div>Ивенты</button>
-  <button class="navbtn" data-tab="mod" onclick="tab('mod')"><div class="navico">◇</div>Мод</button>
-  <button class="navbtn" data-tab="shop" onclick="tab('shop')"><div class="navico">□</div>Кошелёк</button>
-</div></div>
+<!-- NAVIGATION -->
+<nav class="tabs">
 
-<div class="sheetbg" id="sheetbg" onclick="closeSheet()"></div>
-<div class="sheet" id="sheet">
-  <h3 id="sheetTitle">Покупка</h3>
-  <p id="sheetText">Счёт будет отправлен в личные сообщения бота.</p>
-  <div class="sheetrow"><button class="btn ghost" onclick="closeSheet()">Отмена</button><button class="btn" onclick="confirmBuy()">Оплатить</button></div>
+  <button class="tab active" id="tab-home" onclick="goPage('home')">
+    <span class="tab-icon">⌂</span>
+    Главная
+  </button>
+
+  <button class="tab" id="tab-chats" onclick="goPage('chats')">
+    <span class="tab-icon">💬</span>
+    Чаты
+  </button>
+
+  <button class="tab" id="tab-events" onclick="goPage('events')">
+    <span class="tab-icon">🎰</span>
+    Ивенты
+  </button>
+
+  <button class="tab" id="tab-moderation" onclick="goPage('moderation')">
+    <span class="tab-icon">🛡️</span>
+    Модерация
+  </button>
+
+  <button class="tab" id="tab-shop" onclick="goPage('shop')">
+    <span class="tab-icon">🛒</span>
+    Shop
+  </button>
+
+</nav>
+
+<!-- MODAL -->
+<div class="modal-wrap" id="modalWrap" onclick="modalBackground(event)">
+  <div class="modal">
+
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle">
+        OTDEL
+      </div>
+
+      <button class="close" onclick="closeModal()">
+        ×
+      </button>
+    </div>
+
+    <div id="modalContent"></div>
+
+  </div>
 </div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-const tg=window.Telegram?.WebApp;
-try{tg?.ready();tg?.expand();tg?.setHeaderColor?.('#eef1ee');tg?.setBackgroundColor?.('#eef1ee')}catch(e){}
-const initData=tg?.initData||'';
-// If the Mini App is hosted separately from the bot API, set window.OTDEL_API_BASE
-// or pass ?api=https://your-bot-domain.example when opening the app.
-const API_BASE='https://bot-1790203164-2059-wave-dipsize.bothost.tech';
-let state={user:null,chats:[],rental:null,shop:[]};
-let activeChat=null,pending=null;
+const tg = window.Telegram?.WebApp;
 
-function menuInfo(){toast('Telegram ID: '+(state.user?.id||'—')+' · API: '+API_BASE)}
-function toast(s){const x=document.getElementById('toast');x.textContent=s;x.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove('show'),2300)}
-function headers(){return {'Content-Type':'application/json','X-Telegram-Init-Data':initData}}
-async function api(url,options={}){
-  const path=url.startsWith('http')?url:(API_BASE+url);
-  const r=await fetch(path,{...options,headers:{...headers(),...(options.headers||{})}});
-  const raw=await r.text();
-  let d={};
-  try{d=raw?JSON.parse(raw):{}}catch{d={message:raw||('HTTP '+r.status)}}
-  if(!r.ok) throw new Error(d.message||d.error||('HTTP '+r.status));
-  return d;
+const API_BASE = window.API_BASE || "";
+
+let currentPage = "home";
+
+let user = {
+  id: null,
+  username: "",
+  first_name: "",
+  photo_url: ""
+};
+
+function initTelegram(){
+  try{
+    tg?.ready();
+    tg?.expand();
+
+    if(tg?.initDataUnsafe?.user){
+      user = tg.initDataUnsafe.user;
+    }
+  }catch(e){
+    console.log(e);
+  }
+
+  renderUser();
 }
-async function boot(){
-  if(!tg || !initData){
-    document.getElementById('role').textContent='открой в Telegram';
-    toast('Открой OTDEL кнопкой из бота в Telegram');
+
+function renderUser(){
+
+  const avatar =
+    user.photo_url ||
+    "https://placehold.co/100x100/dce3df/15352d?text=U";
+
+  const name =
+    user.first_name ||
+    user.username ||
+    "Пользователь";
+
+  const username =
+    user.username
+      ? "@" + user.username
+      : "Telegram пользователь";
+
+  document.getElementById("topAvatar").src = avatar;
+  document.getElementById("profileAvatar").src = avatar;
+
+  document.getElementById("profileName").textContent = name;
+  document.getElementById("profileUsername").textContent = username;
+}
+
+function goPage(page){
+
+  currentPage = page;
+
+  document.querySelectorAll(".page").forEach(el=>{
+    el.classList.remove("active");
+  });
+
+  const target = document.getElementById("page-"+page);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll(".tab").forEach(el=>{
+    el.classList.remove("active");
+  });
+
+  const tab = document.getElementById("tab-"+page);
+
+  if(tab){
+    tab.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function openShop(){
+  goPage("shop");
+}
+
+function openExternal(url){
+
+  try{
+    if(tg?.openTelegramLink && url.includes("t.me")){
+      tg.openTelegramLink(url);
+      return;
+    }
+
+    if(tg?.openLink){
+      tg.openLink(url);
+      return;
+    }
+  }catch(e){}
+
+  window.open(url,"_blank");
+}
+
+function showToast(text){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = text;
+  toast.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer =
+    setTimeout(()=>{
+      toast.classList.remove("show");
+    },2200);
+}
+
+function openModal(title,html){
+
+  document.getElementById("modalTitle").textContent = title;
+  document.getElementById("modalContent").innerHTML = html;
+
+  document.getElementById("modalWrap")
+    .classList.add("show");
+}
+
+function closeModal(){
+
+  document.getElementById("modalWrap")
+    .classList.remove("show");
+}
+
+function modalBackground(e){
+
+  if(e.target.id === "modalWrap"){
+    closeModal();
+  }
+}
+
+function openTopup(){
+
+  openModal(
+    "Пополнение",
+    `
+      <div class="notice">
+        Пополнение баланса производится через Telegram Stars.
+      </div>
+
+      <button class="btn gold"
+        onclick="showToast('Оплата Stars подключается через API')">
+        ⭐ Пополнить Stars
+      </button>
+    `
+  );
+}
+
+function openRental(){
+
+  openModal(
+    "Аренда",
+    `
+      <div class="notice">
+        Получите доступ к OTDEL и функциям управления чатом.
+      </div>
+
+      <div class="card" style="margin-top:10px">
+        <div class="row">
+          <div class="row-icon">🏠</div>
+
+          <div class="row-main">
+            <div class="row-title">
+              Аренда OTDEL
+            </div>
+
+            <div class="row-sub">
+              Доступ к системе
+            </div>
+          </div>
+
+          <div class="price">
+            ⭐ 100
+          </div>
+        </div>
+
+        <button class="btn gold"
+          onclick="buyProduct('rental',100)">
+          Оплатить
+        </button>
+      </div>
+    `
+  );
+}
+
+function openModerator(){
+
+  openModal(
+    "Модератор",
+    `
+      <div class="notice">
+        Подайте заявку на получение роли модератора чата.
+      </div>
+
+      <input
+        class="input"
+        id="moderatorReason"
+        placeholder="Почему хотите стать модератором?"
+      >
+
+      <button class="btn gold"
+        onclick="sendApplication('moderator')">
+        ⭐ Отправить заявку
+      </button>
+    `
+  );
+}
+
+function openPrefix(){
+
+  openModal(
+    "Префикс",
+    `
+      <div class="notice">
+        Укажите желаемый префикс.
+      </div>
+
+      <input
+        class="input"
+        id="prefixValue"
+        maxlength="30"
+        placeholder="Например: [VIP]"
+      >
+
+      <button class="btn gold"
+        onclick="buyPrefix()">
+        ⭐ Купить
+      </button>
+    `
+  );
+}
+
+function openAddAdmin(){
+
+  openModal(
+    "Добавить администратора",
+    `
+      <div class="notice">
+        Укажите Telegram username администратора.
+      </div>
+
+      <input
+        class="input"
+        id="adminUsername"
+        placeholder="@username"
+      >
+
+      <button class="btn"
+        onclick="addAdmin()">
+        Добавить
+      </button>
+    `
+  );
+}
+
+function openAddChat(){
+
+  openModal(
+    "Добавить чат",
+    `
+      <div class="notice">
+        Введите username Telegram-чата.
+      </div>
+
+      <input
+        class="input"
+        id="chatUsername"
+        placeholder="@mychat"
+      >
+
+      <button class="btn"
+        onclick="addChat()">
+        Добавить чат
+      </button>
+    `
+  );
+}
+
+function openAddCategory(){
+
+  openModal(
+    "Новая категория",
+    `
+      <input
+        class="input"
+        id="categoryName"
+        placeholder="Название категории"
+      >
+
+      <input
+        class="input"
+        id="categoryIcon"
+        placeholder="Emoji, например 🛍️"
+      >
+
+      <button class="btn"
+        onclick="addCategory()">
+        Создать
+      </button>
+    `
+  );
+}
+
+function openPinProduct(){
+
+  openModal(
+    "Закрепление",
+    `
+      <div class="notice">
+        Настройте товар, который должен закрепляться
+        в чате на определённый срок.
+      </div>
+
+      <input
+        class="input"
+        id="pinDuration"
+        type="number"
+        min="1"
+        placeholder="Длительность в минутах"
+      >
+
+      <button class="btn"
+        onclick="savePinProduct()">
+        Сохранить
+      </button>
+    `
+  );
+}
+
+function sendApplication(type){
+
+  const reason =
+    document.getElementById("moderatorReason")?.value.trim();
+
+  if(!reason){
+    showToast("Укажите причину");
     return;
   }
-  document.getElementById('role').textContent='проверка…';
-  try{
-    const d=await api('/api/bootstrap');state=d;activeChat=d.chats[0]||null;render();
-  }catch(e){
-    document.getElementById('role').textContent='нет доступа';
-    document.getElementById('rental').textContent='НУЖНА АРЕНДА';
-    toast(e.message||'Ошибка подключения');
-    document.getElementById('eventsBody').classList.add('hidden');
-    document.getElementById('modBody').classList.add('hidden');
-  }
-}
-function render(){
-  const u=state.user||{};const r=state.rental||{};
-  document.getElementById('role').textContent=u.is_master?'главный владелец':(u.is_developer?'разработчик':(u.has_access?'владелец':'гость'));
-  document.getElementById('rental').textContent=u.is_master?'MASTER':(u.has_access ? ((r.days_left||0)+' дн.') : 'МАГАЗИН ДОСТУПЕН');
-  document.getElementById('level').textContent='Lv. '+(u.is_master?'99':'12');
-  const a=document.getElementById('avatar');if(u.photo_url){a.innerHTML='<img src="'+esc(u.photo_url)+'">'}else a.textContent=(u.first_name||'O')[0].toUpperCase();
-  renderChats();renderShop();
-}
-function renderChats(){
-  const el=document.getElementById('chatList');el.innerHTML='';document.getElementById('chatCount').textContent=state.chats.length;
-  if(!activeChat){el.innerHTML='<div class="card" style="text-align:center;color:var(--muted)">Нет подключённых чатов.</div>';document.getElementById('activeName').textContent='Нет чата';return}
-  document.getElementById('activeName').textContent=activeChat.name;
-  state.chats.forEach(c=>{const d=document.createElement('button');d.className='chat '+(c.id===activeChat.id?'active':'');d.onclick=()=>{activeChat=c;renderChats();tab('lobby')};d.innerHTML='<div class="chatava">'+esc((c.name||'?')[0])+'</div><div style="text-align:left"><b>'+esc(c.name)+'</b><small>'+esc(c.role||'Владелец')+'</small></div><span class="badge">'+(c.id===activeChat.id?'Активен':'Выбрать')+'</span>';el.appendChild(d)})
-}
-function renderShop(){
-  const el=document.getElementById('shopGrid');el.innerHTML='';
-  state.shop.forEach(p=>{const d=document.createElement('div');d.className='product';d.innerHTML='<div class="prodicon">✦</div><b>'+esc(p.name)+'</b><div class="prodfoot"><span class="price">⭐ '+p.price+'</span><button class="buy" onclick="buy(\''+p.id+'\','+p.price+',\''+esc(p.name).replaceAll("'","&#39;")+'\')">Купить</button></div>';el.appendChild(d)})
-}
-function buy(id,price,name){pending={id,price,name};document.getElementById('sheetTitle').textContent=name;document.getElementById('sheetText').textContent='Счёт на ⭐ '+price+' будет отправлен в личные сообщения бота.';document.getElementById('sheetbg').classList.add('show');document.getElementById('sheet').classList.add('show')}
-function closeSheet(){document.getElementById('sheetbg').classList.remove('show');document.getElementById('sheet').classList.remove('show')}
-async function confirmBuy(){if(!pending||!activeChat)return;try{const d=await api('/api/action',{method:'POST',body:JSON.stringify({action:'buy',chat_id:activeChat.id,item:pending.id})});toast(d.message||'Счёт отправлен');closeSheet()}catch(e){toast(e.message)}}
-function syncPrize(select){
-  const item=select.closest('.item');
-  const input=item?.querySelector('.prize-value');
-  if(!input)return;
-  if(select.value==='nft'){input.type='text';input.min='';input.value='';input.placeholder='Название NFT / подарка'}
-  else{input.type='number';input.min='1';input.value='100';input.placeholder='Выигрыш в Stars'}
+
+  closeModal();
+
+  apiAction({
+    action:"moderator_application",
+    type:type,
+    reason:reason
+  });
+
+  showToast("Заявка отправлена");
 }
 
-async function act(action,el){
-  if(!activeChat){toast('Нет активного чата');return}
-  let payload={action,chat_id:activeChat.id};
-  if(el){
-    const item=el.closest('.item');
-    const target=item?.querySelector('.target');
-    const reason=item?.querySelector('.reason');
-    const duration=item?.querySelector('.duration');
-    const prizeType=item?.querySelector('.prize-type');
-    const prizeValue=item?.querySelector('.prize-value');
-    if(target)payload.target=target.value.trim();
-    if(reason)payload.reason=reason.value.trim();
-    if(duration)payload.duration=duration.value;
-    if(prizeType)payload.prize_type=prizeType.value;
-    if(prizeValue)payload.prize_value=prizeValue.value.trim();
-    const secretNumber=item?.querySelector('.secret-number');
-    if(secretNumber)payload.secret_number=secretNumber.value.trim();
+function buyPrefix(){
+
+  const prefix =
+    document.getElementById("prefixValue")?.value.trim();
+
+  if(!prefix){
+    showToast("Введите префикс");
+    return;
   }
+
+  closeModal();
+
+  buyProduct("prefix",50,prefix);
+}
+
+function addAdmin(){
+
+  const username =
+    document.getElementById("adminUsername")?.value.trim();
+
+  if(!username){
+    showToast("Введите username");
+    return;
+  }
+
+  closeModal();
+
+  apiAction({
+    action:"add_admin",
+    username:username
+  });
+
+  showToast("Запрос отправлен");
+}
+
+function addChat(){
+
+  const username =
+    document.getElementById("chatUsername")?.value.trim();
+
+  if(!username){
+    showToast("Введите username");
+    return;
+  }
+
+  closeModal();
+
+  apiAction({
+    action:"add_chat",
+    username:username
+  });
+
+  showToast("Чат добавляется");
+}
+
+function addCategory(){
+
+  const name =
+    document.getElementById("categoryName")?.value.trim();
+
+  const icon =
+    document.getElementById("categoryIcon")?.value.trim() || "🛍️";
+
+  if(!name){
+    showToast("Введите название");
+    return;
+  }
+
+  closeModal();
+
+  apiAction({
+    action:"add_category",
+    name:name,
+    icon:icon
+  });
+
+  showToast("Категория создана");
+}
+
+function savePinProduct(){
+
+  const duration =
+    document.getElementById("pinDuration")?.value;
+
+  if(!duration){
+    showToast("Укажите длительность");
+    return;
+  }
+
+  closeModal();
+
+  apiAction({
+    action:"pin_product",
+    duration:Number(duration)
+  });
+
+  showToast("Настройка сохранена");
+}
+
+function buyProduct(type,price,extra=""){
+
+  apiAction({
+    action:"buy",
+    product:type,
+    price:Number(price),
+    extra:extra
+  });
+
+  showToast("Открываем оплату ⭐");
+
   try{
-    const d=await api('/api/action',{method:'POST',body:JSON.stringify(payload)});
-    toast(d.message||'Готово');
-    try{tg?.HapticFeedback?.notificationOccurred('success')}catch{}
+    if(tg?.showPopup){
+      tg.showPopup({
+        title:"Оплата",
+        message:`Товар: ${type}\nСтоимость: ${price} ⭐`,
+        buttons:[
+          {
+            id:"pay",
+            type:"default",
+            text:"Оплатить"
+          },
+          {
+            id:"cancel",
+            type:"cancel",
+            text:"Отмена"
+          }
+        ]
+      },function(id){
+
+        if(id==="pay"){
+          apiAction({
+            action:"confirm_payment",
+            product:type,
+            price:Number(price),
+            extra:extra
+          });
+        }
+
+      });
+    }
   }catch(e){
-    toast(e.message);
-    try{tg?.HapticFeedback?.notificationOccurred('error')}catch{}
+    console.log(e);
   }
 }
-function tab(name){document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));document.getElementById(name).classList.add('active');document.querySelectorAll('.navbtn').forEach(x=>x.classList.toggle('active',x.dataset.tab===name));try{tg?.HapticFeedback?.impactOccurred('light')}catch{}}
-function openItem(row){const item=row.parentElement;const was=item.classList.contains('open');item.parentElement.querySelectorAll('.item.open').forEach(x=>x.classList.remove('open'));if(!was)item.classList.add('open')}
-function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-boot();
+
+function openShopCategory(category){
+
+  const content =
+    document.getElementById("shopContent");
+
+  if(!content)return;
+
+  let html = "";
+
+  if(category==="chat"){
+
+    html = `
+      <div class="section-title">
+        <b>CHAT</b>
+        <span>⭐ Stars</span>
+      </div>
+
+      <div class="card product">
+        <div class="row">
+          <div class="row-icon">🏠</div>
+
+          <div class="row-main">
+            <div class="row-title">
+              Аренда OTDEL
+            </div>
+
+            <div class="row-sub">
+              Доступ к системе
+            </div>
+
+            <div class="price">
+              ⭐ 100
+            </div>
+          </div>
+        </div>
+
+        <button class="btn gold"
+          onclick="buyProduct('rental',100)">
+          Купить
+        </button>
+      </div>
+    `;
+
+  }else if(category==="products"){
+
+    html = `
+      <div class="section-title">
+        <b>ТОВАРЫ</b>
+        <span>⭐ Stars</span>
+      </div>
+
+      <div class="card product">
+        <div class="row">
+          <div class="row-icon">📌</div>
+
+          <div class="row-main">
+            <div class="row-title">
+              Закреп сообщения
+            </div>
+
+            <div class="row-sub">
+              Закрепить сообщение на срок
+            </div>
+
+            <div class="price">
+              ⭐ 50
+            </div>
+          </div>
+        </div>
+
+        <button class="btn"
+          onclick="buyProduct('pin',50)">
+          Купить
+        </button>
+      </div>
+    `;
+
+  }else if(category==="prefix"){
+
+    html = `
+      <div class="section-title">
+        <b>ПРЕФИКСЫ</b>
+        <span>⭐ Stars</span>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="row-icon">🏷️</div>
+
+          <div class="row-main">
+            <div class="row-title">
+              Уникальный префикс
+            </div>
+
+            <div class="row-sub">
+              Свой текст перед именем
+            </div>
+
+            <div class="price">
+              ⭐ 50
+            </div>
+          </div>
+        </div>
+
+        <button class="btn"
+          onclick="openPrefix()">
+          Выбрать
+        </button>
+      </div>
+    `;
+
+  }else if(category==="moderation"){
+
+    html = `
+      <div class="section-title">
+        <b>МОДЕРАЦИЯ</b>
+        <span>⭐ Stars</span>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="row-icon">🛡️</div>
+
+          <div class="row-main">
+            <div class="row-title">
+              Роль модератора
+            </div>
+
+            <div class="row-sub">
+              Подать заявку
+            </div>
+
+            <div class="price">
+              ⭐ 100
+            </div>
+          </div>
+        </div>
+
+        <button class="btn"
+          onclick="openModerator()">
+          Оформить
+        </button>
+      </div>
+    `;
+  }
+
+  content.innerHTML = html;
+}
+
+async function apiAction(payload){
+
+  payload.user_id = user.id;
+  payload.username = user.username || "";
+
+  if(!API_BASE){
+    console.log("API_BASE is empty",payload);
+    return;
+  }
+
+  try{
+
+    const response =
+      await fetch(
+        API_BASE.replace(/\/$/,"") + "/api/action",
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify(payload)
+        }
+      );
+
+    const data =
+      await response.json().catch(()=>({}));
+
+    if(data?.message){
+      showToast(data.message);
+    }
+
+    if(data?.balance !== undefined){
+      updateBalance(data.balance);
+    }
+
+    return data;
+
+  }catch(error){
+
+    console.error(error);
+
+    showToast("Ошибка соединения с сервером");
+  }
+}
+
+async function bootstrap(){
+
+  if(!API_BASE)return;
+
+  try{
+
+    const response =
+      await fetch(
+        API_BASE.replace(/\/$/,"") +
+        "/api/bootstrap?user_id=" +
+        encodeURIComponent(user.id || "")
+      );
+
+    const data =
+      await response.json();
+
+    if(data.balance !== undefined){
+      updateBalance(data.balance);
+    }
+
+    if(data.owner){
+      document.body.classList.add("owner");
+    }
+
+  }catch(error){
+
+    console.log("bootstrap error",error);
+  }
+}
+
+function updateBalance(balance){
+
+  const value =
+    Number(balance || 0);
+
+  document.getElementById("starsBalance")
+    .textContent = value + " ⭐";
+
+  document.getElementById("shopBalance")
+    .textContent = value + " ⭐";
+}
+
+initTelegram();
+bootstrap();
 </script>
+
 </body>
-</html>
+  </html>
