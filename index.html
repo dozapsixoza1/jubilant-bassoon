@@ -43,7 +43,7 @@
 
   <section id="lobby" class="panel active">
     <div class="hero">
-      <img class="hero-img" src="welcome.jpg" alt="Welcome OTDEL">
+      <img class="hero-img" src="/welcome.png" alt="Welcome OTDEL">
       <div class="hero-content">
         <div class="eyebrow">WELCOME TO</div>
         <h1>OTDEL</h1>
@@ -81,7 +81,7 @@
       <div class="card-head"><div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div><div><h3>Events</h3><p>Запуск событий в активном чате</p></div></div>
       <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">777</div><div class="note">Telegram slot event</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><select class="select prize-type" onchange="syncPrize(this)"><option value="stars">⭐ Stars</option><option value="nft">🎁 NFT</option></select><input class="input prize-value" type="number" min="1" placeholder="Выигрыш в Stars"><button class="btn" onclick="act('event_777',this)">Запустить</button></div></div></div>
       <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">Перебив</div><div class="note">Активность чата на 3 минуты</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><select class="select prize-type" onchange="syncPrize(this)"><option value="stars">⭐ Stars</option><option value="nft">🎁 NFT</option></select><input class="input prize-value" type="number" min="1" placeholder="Выигрыш в Stars"><button class="btn" onclick="act('event_spam3',this)">Запустить</button></div></div></div>
-      <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">Угадай цифры</div><div class="note">Бот загадывает число от 1 до 100</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><select class="select prize-type" onchange="syncPrize(this)"><option value="stars">⭐ Stars</option><option value="nft">🎁 NFT</option></select><input class="input prize-value" type="number" min="1" placeholder="Выигрыш в Stars"><button class="btn" onclick="act('event_guess',this)">Запустить</button></div></div></div>
+      <div class="item"><div class="itemrow" onclick="openItem(this)"><div><div class="itemname">Угадай число</div><div class="note">Ты сам задаёшь любое целое число</div></div><span class="chev">›</span></div><div class="itembody"><div class="actions"><select class="select prize-type" onchange="syncPrize(this)"><option value="stars">⭐ Stars</option><option value="nft">🎁 NFT</option></select><input class="input prize-value" type="number" min="1" placeholder="Выигрыш в Stars"><input class="input secret-number" type="text" inputmode="numeric" placeholder="Загаданное число (любое)"><button class="btn" onclick="act('event_guess',this)">Запустить</button></div></div></div>
     </div>
   </section>
 
@@ -129,7 +129,7 @@ try{tg?.ready();tg?.expand();tg?.setHeaderColor?.('#eef1ee');tg?.setBackgroundCo
 const initData=tg?.initData||'';
 // If the Mini App is hosted separately from the bot API, set window.OTDEL_API_BASE
 // or pass ?api=https://your-bot-domain.example when opening the app.
-const API_BASE='https://bot-1790352826-4636-wave-dipsize.bothost.tech';
+const API_BASE='https://bot-1790203164-2059-wave-dipsize.bothost.tech';
 let state={user:null,chats:[],rental:null,shop:[]};
 let activeChat=null,pending=null;
 
@@ -206,6 +206,8 @@ async function act(action,el){
     if(duration)payload.duration=duration.value;
     if(prizeType)payload.prize_type=prizeType.value;
     if(prizeValue)payload.prize_value=prizeValue.value.trim();
+    const secretNumber=item?.querySelector('.secret-number');
+    if(secretNumber)payload.secret_number=secretNumber.value.trim();
   }
   try{
     const d=await api('/api/action',{method:'POST',body:JSON.stringify(payload)});
